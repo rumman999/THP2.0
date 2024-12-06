@@ -1,0 +1,33 @@
+[
+    {
+      "title": "Serenity Heights",
+      "details": "Location: Dhaka | 15,000 Sqft",
+      "image": "1.webp",
+      "category": "Highlighted"
+    },
+    {
+      "title": "Emerald Residences",
+      "details": "Location: Dhaka | 10,000 Sqft",
+      "image": "2.webp",
+      "category": "Standard"
+    },
+    {
+      "title": "Lakeside Apartments",
+      "details": "Location: Chittagong | 8,000 Sqft",
+      "image": "3.webp",
+      "category": "Standard"
+    },
+    {
+      "title": "Skyline Villas",
+      "details": "Location: Dhaka | 10,500 Sqft",
+      "image": "4.webp",
+      "category": "Standard"
+    },
+    {
+      "title": "Cityscape Plaza",
+      "details": "Location: Dhaka | 12,000 Sqft",
+      "image": "5.webp",
+      "category": "Standard"
+    }
+  ]
+  

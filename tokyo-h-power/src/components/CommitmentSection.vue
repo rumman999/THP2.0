@@ -6,9 +6,9 @@
         <div class="col-md-6 mb-4 mb-md-0">
           <div class="position-relative text-center">
             <img
-              src="https://via.placeholder.com/600x400"
+              src="@/assets/com1.webp"
               alt="Placeholder"
-              class="img-fluid rounded"
+              class="img-fluid rounded hero-image"
             />
             <button
               class="btn btn-light position-absolute"
@@ -22,8 +22,8 @@
         <!-- Right Column: Text Content -->
         <div class="col-md-6 text-center text-md-start">
           <h2 class="fw-bold">
-            Commitment to <span class="text-success">innovation</span>, <span class="text-warning">sustainability</span>,
-            and <span class="text-primary">excellence</span>
+            Commitment to innovation, <span style="color: #c6a266;">sustainability
+            and excellence</span>
           </h2>
           <p><strong>Who We Are</strong></p>
           <p class="text-muted">
@@ -57,9 +57,11 @@ export default {
   max-width: 1200px;
 }
 
-img {
-  max-height: 400px; /* Ensure consistent image size */
-  object-fit: cover; /* Maintain aspect ratio */
+.hero-image {
+  width: 100%; /* Responsive width */
+  height: 702px; /* Fixed height */
+  object-fit: cover; /* Maintain aspect ratio while covering the space */
+  border-radius: 0.5rem; /* Add rounded corners */
 }
 
 button {

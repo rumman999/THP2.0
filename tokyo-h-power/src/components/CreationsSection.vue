@@ -5,7 +5,7 @@
       <!-- Title Section -->
       <div class="mb-4">
         <h2 class="fw-bold">Our Creations</h2>
-        <p class="text-muted">
+        <p class="">
           Our creations are a testament to our commitment to excellence, innovation, and sustainability.
           Each project is meticulously planned and executed with a passion for delivering superior real estate solutions that enhance urban living.
         </p>
@@ -14,16 +14,16 @@
       <!-- Main Content -->
       <div class="row">
         <!-- Highlighted Project -->
-        <div class="col-md-6 mb-4">
+        <div class="col-md-6 mb-4" v-if="highlightedProject">
           <div class="card h-100">
             <img
-              src="https://via.placeholder.com/600x400"
+              :src="highlightedProject.image"
               class="card-img-top"
-              alt="Serenity Heights"
+              :alt="highlightedProject.title"
             />
             <div class="card-body">
-              <h5 class="card-title fw-bold">Serenity Heights</h5>
-              <p class="text-muted">Location: Dhaka | 15,000 Sqft</p>
+              <h5 class="card-title fw-bold">{{ highlightedProject.title }}</h5>
+              <p class="text-muted">{{ highlightedProject.details }}</p>
             </div>
           </div>
         </div>
@@ -31,10 +31,10 @@
         <!-- Grid of Smaller Projects -->
         <div class="col-md-6">
           <div class="row">
-            <div class="col-md-6 mb-4" v-for="(project, index) in projects" :key="index">
+            <div class="col-md-6 mb-4" v-for="(project, index) in standardProjects" :key="index">
               <div class="card h-100">
                 <img
-                  src="https://via.placeholder.com/300x200"
+                  :src="project.image"
                   class="card-img-top"
                   :alt="project.title"
                 />
@@ -52,29 +52,44 @@
 </template>
 
 <script>
+import projectsData from "@/project.json";
+
 export default {
   name: "CreationsSection",
   data() {
     return {
-      projects: [
-        {
-          title: "Emerald Residences",
-          details: "Location: Dhaka | 10,000 Sqft",
-        },
-        {
-          title: "Lakeside Apartments",
-          details: "Location: Chittagong | 8,000 Sqft",
-        },
-        {
-          title: "Skyline Villas",
-          details: "Location: Dhaka | 10,500 Sqft",
-        },
-        {
-          title: "Cityscape Plaza",
-          details: "Location: Dhaka | 12,000 Sqft",
-        },
-      ],
+      projects: [], // Stores all projects
+      highlightedProject: null, // Stores the highlighted project
+      standardProjects: [], // Stores the standard projects
     };
+  },
+  mounted() {
+    this.fetchProjects();
+  },
+  methods: {
+    fetchProjects() {
+      try {
+        const data = projectsData;
+
+        // Resolve local image paths
+        this.projects = data.map((project) => {
+          if (!project.image.startsWith("http")) {
+            project.image = require(`@/assets/${project.image}`);
+          }
+          return project;
+        });
+
+        // Categorize projects
+        this.highlightedProject = this.projects.find(
+          (project) => project.category === "Highlighted"
+        );
+        this.standardProjects = this.projects.filter(
+          (project) => project.category === "Standard"
+        );
+      } catch (error) {
+        console.error("Error processing projects:", error);
+      }
+  },
   },
 };
 </script>
@@ -85,7 +100,8 @@ export default {
   display: flex; /* Flexbox for centering */
   align-items: center; /* Center vertically */
   justify-content: center; /* Center horizontally */
-  background-color: #f8f9fa; /* Optional: light background */
+  background-color: #c6a266; /* Optional: light background */
+  color: white;
 }
 
 .card {
@@ -97,7 +113,5 @@ export default {
   transform: scale(1.03);
 }
 
-h2 {
-  color: #c6a266; /* Use your project's theme color */
-}
+
 </style>

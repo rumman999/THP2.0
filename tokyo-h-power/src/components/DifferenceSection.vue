@@ -11,7 +11,7 @@
         <!-- Left Image -->
         <div class="col-md-6 mb-4 mb-md-0">
           <img
-            src="https://via.placeholder.com/600x400"
+            src="@/assets/diff1.webp"
             alt="Modern home with a pool"
             class="img-fluid rounded shadow"
           />
@@ -104,7 +104,7 @@
 
           <!-- Learn More Button -->
           <div class="text-center mt-4">
-            <a href="#" class="btn btn-outline-primary">Learn More</a>
+            <a href="#" class="btn btn-outline-primary">contact us</a>
           </div>
         </div>
       </div>
@@ -125,8 +125,8 @@ export default {
 
 .btn-outline-primary {
   background-color: transparent;
-  border: 2px solid #007bff;
-  color: #007bff;
+  border: 2px solid black;
+  color: black;
 }
 
 .btn-outline-primary:hover {

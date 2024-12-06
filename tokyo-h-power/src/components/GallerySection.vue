@@ -1,16 +1,45 @@
 <template>
-  <section class="container py-5">
-    <h2 class="text-center mb-4">Gallery</h2>
-    <div class="row">
-      <div class="col-md-4 mb-3" v-for="i in 3" :key="i">
-        <div class="card">
-          <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Placeholder">
-          <div class="card-body">
-            <h5 class="card-title">Listing {{ i }}</h5>
-            <p class="card-text">Amazing property for your dream lifestyle.</p>
-          </div>
-        </div>
+  <section class="container py-5 gallery">
+    <!-- Title Section -->
+    <div class="text-center mb-5">
+      
+    </div>
+
+    <!-- Gallery Layout -->
+    <div class="row g-4 align-items-center">
+      <!-- Left-Side Image -->
+      <div class="col-md-6">
+        <h2 class="fw-bold">Gallery</h2>
+        <p class="text-muted">
+          Explore the story of Tokyo H Power Properties Ltd. and discover how we have grown to become a leader in the real estate industry.
+        </p>
+        <img
+          src="@/assets/g1.webp"
+          alt="Building 1"
+          class="img-fluid rounded"
+        />
+      </div>
+
+      <!-- Right-Side Top Image -->
+      <div class="col-md-6">
+        <img
+          src="@/assets/g2.webp"
+          alt="Building 2"
+          class="img-fluid rounded mb-4"
+        />
+        <!-- Right-Side Bottom Image -->
+        <img
+          src="@/assets/g3.webp"
+          alt="Building 3"
+          class="img-fluid rounded"
+        />
       </div>
     </div>
   </section>
 </template>
+
+<style>
+.gallery{
+  height: 100vh;
+}
+</style>

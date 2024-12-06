@@ -6,27 +6,27 @@
       <!-- Carousel Items -->
       <div class="carousel-inner" style="height: 100%;">
         <div class="carousel-item active" style="height: 100%;">
-          <img src="https://via.placeholder.com/1920x800?text=Slide+1" class="d-block w-100" alt="Slide 1" style="height: 100%; object-fit: cover;">
+          <img src="@/assets/c1.webp" class="d-block w-100" alt="Slide 1" style="height: 100%; object-fit: cover;">
           <div class="carousel-caption d-flex flex-column justify-content-center" style="height: 100%;">
             <h1 class="display-4">Innovative Design and Architecture</h1>
             <p class="lead">Redefining happiness with creativity and sustainability.</p>
-            <button class="btn btn-warning btn-sm text-dark mx-auto mt-3">Learn More</button>
+            <button class="btn mx-auto mt-3 learn-btn">Learn More</button>
           </div>
         </div>
         <div class="carousel-item" style="height: 100%;">
-          <img src="https://via.placeholder.com/1920x800?text=Slide+2" class="d-block w-100" alt="Slide 2" style="height: 100%; object-fit: cover;">
+          <img src="@/assets/c2.webp" class="d-block w-100" alt="Slide 2" style="height: 100%; object-fit: cover;">
           <div class="carousel-caption d-flex flex-column justify-content-center" style="height: 100%;">
             <h1 class="display-4">Your Dreams Turned into Reality</h1>
             <p class="lead">Bringing sustainable solutions to modern living.</p>
-            <button class="btn btn-warning btn-sm text-dark mx-auto mt-3">Learn More</button>
+            <button class="btn mx-auto mt-3 learn-btn">Learn More</button>
           </div>
         </div>
         <div class="carousel-item" style="height: 100%;">
-          <img src="https://via.placeholder.com/1920x800?text=Slide+3" class="d-block w-100" alt="Slide 3" style="height: 100%; object-fit: cover;">
+          <img src="@/assets/c3.webp" class="d-block w-100" alt="Slide 3" style="height: 100%; object-fit: cover;">
           <div class="carousel-caption d-flex flex-column justify-content-center" style="height: 100%;">
             <h1 class="display-4">Sustainable Design for the Future</h1>
             <p class="lead">Crafting spaces that inspire and connect.</p>
-            <button class="btn btn-warning btn-sm text-dark mx-auto mt-3">Learn More</button>
+            <button class="btn mx-auto mt-3 learn-btn">Learn More</button>
           </div>
         </div>
       </div>
@@ -51,6 +51,10 @@ export default {
 </script>
 
 <style scoped>
+.learn-btn{
+  background-color: #c6a266;
+  color: white;
+}
 .hero-section {
   position: relative;
   overflow: hidden;
