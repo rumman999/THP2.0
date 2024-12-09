@@ -2,13 +2,11 @@
   <section class="discover-section">
     <div>
       <h2 class="text-center text-white mb-4">Discover Your Next Home</h2>
-      <p class="text-center text-muted mb-5">
-        Browse a Range of Homes to Suit Every Need
-      </p>
+      <p class="text-center text-muted mb-5">Browse a Range of Homes to Suit Every Need</p>
       <swiper
         class="mySwiper"
-        :slides-per-view="6"
-        :space-between="30"
+        :slides-per-view="3"
+        :space-between="20"
         grab-cursor="true"
         :breakpoints="breakpoints"
       >
@@ -20,9 +18,9 @@
               :alt="item.title"
             />
             <div class="card-body">
-              <h6 class="text-uppercase text-muted mb-2 text-center">{{ item.subtitle }}</h6>
-              <h5 class="card-title text-center text-white">{{ item.title }}</h5>
-              <p class="card-text text-center text-muted">{{ item.description }}</p>
+              <h6 class="text-uppercase mb-2 text-center">{{ item.subtitle }}</h6>
+              <h5 class="card-title text-center" style="color: #c6a266;">{{ item.title }}</h5>
+              <p class="card-text text-center">{{ item.description }}</p>
             </div>
           </div>
         </swiper-slide>
@@ -30,6 +28,8 @@
     </div>
   </section>
 </template>
+
+
 
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -45,8 +45,8 @@ export default {
       discoverItems: [],
       breakpoints: {
         640: { slidesPerView: 1, spaceBetween: 10 },
-        768: { slidesPerView: 2, spaceBetween: 20 },
-        1024: { slidesPerView: 3, spaceBetween: 30 },
+        768: { slidesPerView: 2, spaceBetween: 15 },
+        1024: { slidesPerView: 3, spaceBetween: 20 },
       },
     };
   },
@@ -56,11 +56,20 @@ export default {
   methods: {
     async fetchDiscoverItems() {
       try {
-        const response = await fetch('/discover.json');
+        const response = await fetch("/discover.json"); // Fetch JSON from the public folder
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        this.discoverItems = await response.json();
+
+        const data = await response.json();
+
+        // Resolve image paths dynamically
+        this.discoverItems = data.map((item) => {
+          if (!item.image.startsWith("http")) {
+            item.image = require(`@/assets/${item.image}`);
+          }
+          return item;
+        });
       } catch (error) {
         console.error("Failed to fetch discover items:", error);
       }
@@ -68,6 +77,8 @@ export default {
   },
 };
 </script>
+
+
 
 <style scoped>
 /* Section Styling */
@@ -82,17 +93,21 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  margin-left: 0;
 }
 
 /* Bootstrap Card Styling */
 .card {
   border: none;
   border-radius: 10px;
-  background-color: #1c1c1c;
+  background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease;
   width: 500px; /* Fixed width */
-  height: 678px; /* Fixed height */
+  height: 750px; /* Increased card height */
 }
 
 .card:hover {
@@ -104,13 +119,13 @@ export default {
   width: 100%; /* Full width within swiper */
   max-width: 500px; /* Ensure max width consistency */
   margin: auto; /* Centering */
-  height: 678px; /* Fixed card height */
+  height: 750px; /* Increased card height */
 }
 
 /* Image Adjustments */
 .card-img-top {
   width: 100%;
-  height: 300px; /* Fixed height for consistency */
+  height: 600px; /* Increased height for taller images */
   object-fit: cover; /* Crop images evenly */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
 }
@@ -129,3 +144,4 @@ export default {
   color: #b3b3b3 !important; /* Subtle text for descriptions */
 }
 </style>
+

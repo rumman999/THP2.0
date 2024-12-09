@@ -5,7 +5,7 @@
       <!-- Title Section -->
       <div class="mb-4">
         <h2 class="fw-bold">Our Creations</h2>
-        <p class="">
+        <p>
           Our creations are a testament to our commitment to excellence, innovation, and sustainability.
           Each project is meticulously planned and executed with a passion for delivering superior real estate solutions that enhance urban living.
         </p>
@@ -31,7 +31,11 @@
         <!-- Grid of Smaller Projects -->
         <div class="col-md-6">
           <div class="row">
-            <div class="col-md-6 mb-4" v-for="(project, index) in standardProjects" :key="index">
+            <div
+              class="col-md-6 mb-4"
+              v-for="(project, index) in standardProjects"
+              :key="index"
+            >
               <div class="card h-100">
                 <img
                   :src="project.image"
@@ -52,30 +56,31 @@
 </template>
 
 <script>
-import projectsData from "@/project.json";
-
 export default {
   name: "CreationsSection",
   data() {
     return {
-      projects: [], // Stores all projects
-      highlightedProject: null, // Stores the highlighted project
-      standardProjects: [], // Stores the standard projects
+      projects: [],
+      highlightedProject: null,
+      standardProjects: [],
     };
   },
-  mounted() {
-    this.fetchProjects();
+  async created() {
+    await this.fetchProjects();
   },
   methods: {
-    fetchProjects() {
+    async fetchProjects() {
       try {
-        const data = projectsData;
+        const response = await fetch("/project.json"); // Fetch JSON from the public folder
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-        // Resolve local image paths
+        const data = await response.json();
+
+        // Resolve image paths dynamically
         this.projects = data.map((project) => {
-          if (!project.image.startsWith("http")) {
-            project.image = require(`@/assets/${project.image}`);
-          }
+          project.image = require(`@/assets/${project.image}`);
           return project;
         });
 
@@ -87,12 +92,14 @@ export default {
           (project) => project.category === "Standard"
         );
       } catch (error) {
-        console.error("Error processing projects:", error);
+        console.error("Error fetching or processing projects:", error);
       }
-  },
+    },
   },
 };
 </script>
+
+
 
 <style scoped>
 .creations-section {

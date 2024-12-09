@@ -130,7 +130,8 @@ export default {
 }
 
 .btn-outline-primary:hover {
-  background-color: #007bff;
+  background-color:#c6a266;
+  border: #c6a266;
   color: #fff;
 }
 </style>

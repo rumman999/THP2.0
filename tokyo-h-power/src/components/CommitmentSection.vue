@@ -27,11 +27,11 @@
           </h2>
           <p><strong>Who We Are</strong></p>
           <p class="text-muted">
-            Tokyo H Power Properties Ltd. is a leading real estate development company renowned for its commitment to innovation, sustainability, and excellence.
+            Laborum tempor veniam pariatur aliquip ex voluptate in eu do anim aliquip officia. In esse in adipisicing laboris excepteur consequat nulla mollit aute esse amet consectetur. Aute do dolor deserunt id dolore nostrud non aute enim mollit anim.Et enim velit ea nostrud laboris cillum. Consequat ad ea laborum sit nisi excepteur tempor nisi nisi ad officia reprehenderit. Est est et non id occaecat aliquip culpa id et.Do culpa ea do eu mollit adipisicing fugiat ut. Qui nostrud eu ex incididunt cupidatat pariatur sit laboris ullamco sint nulla dolore. Consequat quis pariatur ad deserunt. Tempor pariatur cupidatat proident occaecat est.
           </p>
           <p><strong>Our Mission</strong></p>
           <p class="text-muted">
-            To envision a future where Tokyo H Power Properties Ltd. provides its clients with superior quality architectural brilliance, redefining city living.
+            Esse veniam quis velit Lorem exercitation ad. Ut exercitation adipisicing sint in do et dolore. Id occaecat cillum mollit dolor aliqua. Lorem reprehenderit labore ex excepteur est quis minim reprehenderit consequat ullamco ea laboris. Fugiat cupidatat id mollit eu officia adipisicing officia veniam occaecat commodo sunt in do eu. Qui ea anim dolore eiusmod mollit esse.Occaecat ullamco magna nostrud laborum veniam irure commodo nisi occaecat consequat. Anim aliqua incididunt enim Lorem proident. Sint excepteur sit velit excepteur pariatur enim in cillum nulla pariatur duis velit tempor ad. Eiusmod amet velit cupidatat do. Et sit enim sunt eiusmod commodo esse elit proident. Irure deserunt in ut do ea nostrud mollit.Labore consequat dolore et dolor qui sunt laborum. Id ex sunt cupidatat adipisicing minim ex magna quis adipisicing. Laboris duis incididunt deserunt irure duis veniam minim id labore reprehenderit aliquip. Quis eiusmod amet ex enim aliquip duis id esse. Labore eu laboris in tempor proident veniam do proident consectetur. Enim officia non deserunt esse culpa elit consectetur.
           </p>
         </div>
       </div>
@@ -54,11 +54,11 @@ export default {
 }
 
 .container {
-  max-width: 1200px;
+
 }
 
 .hero-image {
-  width: 100%; /* Responsive width */
+  width: 616px; /* Responsive width */
   height: 702px; /* Fixed height */
   object-fit: cover; /* Maintain aspect ratio while covering the space */
   border-radius: 0.5rem; /* Add rounded corners */

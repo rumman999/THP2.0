@@ -1,5 +1,6 @@
 <template>
     <div>
+        <TopBar />
         <HeaderSection />
         <HeroSection />
         <CommitmentSection />
@@ -7,6 +8,7 @@
         <DifferenceSection />
         <DiscoverSection />
         <GallerySection />
+        <TestimonialCarousel />
         <FooterSection />
   </div>
 </template>
@@ -21,9 +23,12 @@ import DifferenceSection from "../components/DifferenceSection.vue";
 import DiscoverSection from "../components/DiscoverSection.vue";
 import GallerySection from "../components/GallerySection.vue";
 import FooterSection from "../components/FooterSection.vue";
+import TestimonialCarousel from "../components/TestimonialCarousel.vue";
+import TopBar from "../components/TopBar.vue";
 
 export default {
   components: {
+    TopBar,
     HeaderSection,
     HeroSection,
     CommitmentSection,
@@ -31,6 +36,7 @@ export default {
     DifferenceSection,
     DiscoverSection,
     GallerySection,
+    TestimonialCarousel,
     FooterSection,
   },
 };
