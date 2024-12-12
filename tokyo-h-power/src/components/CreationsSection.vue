@@ -14,18 +14,23 @@
       <!-- Main Content -->
       <div class="row">
         <!-- Highlighted Project -->
-          <div class="col-lg-6 col-12 mb-4" v-if="highlightedProject" :class="{ 'highlighted-project': true }">
-            <div class="card h-100">
-              <img
-                :src="highlightedProject.image"
-                class="card-img-top"
-                :alt="highlightedProject.title"
-              />
-              <div class="card-body">
-                <h5 class="card-title fw-bold">{{ highlightedProject.title }}</h5>
-                <p class="text-muted">{{ highlightedProject.details }}</p>
-              </div>
+        <div
+          class="col-lg-6 col-12 mb-4"
+          v-if="highlightedProject"
+          :class="{ 'highlighted-project': true }"
+          @click="goToProject(highlightedProject.id)"
+        >
+          <div class="card h-100">
+            <img
+              :src="highlightedProject.image"
+              class="card-img-top"
+              :alt="highlightedProject.title"
+            />
+            <div class="card-body">
+              <h5 class="card-title fw-bold">{{ highlightedProject.title }}</h5>
+              <p class="text-muted">{{ highlightedProject.details }}</p>
             </div>
+          </div>
         </div>
 
         <!-- Grid of Smaller Projects -->
@@ -35,6 +40,7 @@
               class="col-md-6 col-12 mb-4"
               v-for="(project, index) in standardProjects"
               :key="index"
+              @click="goToProject(project.id)"
             >
               <div class="card h-100">
                 <img
@@ -79,14 +85,13 @@ export default {
         const data = await response.json();
 
         // Format projects from API response
-        this.projects = data.map((project) => {
-          return {
-            title: project.acf.title || "Untitled",
-            details: project.acf.description || "No description available.",
-            image: project.acf.project_image || "https://via.placeholder.com/150", // Fallback for missing image
-            category: project.acf.category || "Uncategorized",
-          };
-        });
+        this.projects = data.map((project) => ({
+          id: project.id, // Include the ID for routing
+          title: project.acf.title || "Untitled",
+          details: project.acf.description || "No description available.",
+          image: project.acf.project_image || "https://via.placeholder.com/150", // Fallback for missing image
+          category: project.acf.category || "Uncategorized",
+        }));
 
         // Categorize projects
         this.highlightedProject = this.projects.find(
@@ -98,6 +103,10 @@ export default {
       } catch (error) {
         console.error("Error fetching or processing projects:", error);
       }
+    },
+    goToProject(projectId) {
+      // Navigate to the project page
+      this.$router.push({ name: "ProjectPage", params: { id: projectId } });
     },
   },
 };
@@ -118,6 +127,7 @@ export default {
   border: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  cursor: pointer; /* Add pointer cursor on hover */
 }
 
 .card:hover {
