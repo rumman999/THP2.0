@@ -71,17 +71,21 @@ export default {
   methods: {
     async fetchProjects() {
       try {
-        const response = await fetch("/project.json"); // Fetch JSON from the public folder
+        const response = await fetch("https://thp.com.bd/wp/wp-json/wp/v2/projects");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const data = await response.json();
 
-        // Resolve image paths dynamically
+        // Format projects from API response
         this.projects = data.map((project) => {
-          project.image = require(`@/assets/${project.image}`);
-          return project;
+          return {
+            title: project.acf.title || "Untitled",
+            details: project.acf.description || "No description available.",
+            image: project.acf.project_image || "https://via.placeholder.com/150", // Fallback for missing image
+            category: project.acf.category || "Uncategorized",
+          };
         });
 
         // Categorize projects
@@ -98,8 +102,6 @@ export default {
   },
 };
 </script>
-
-
 
 <style scoped>
 .creations-section {
@@ -119,6 +121,4 @@ export default {
 .card:hover {
   transform: scale(1.03);
 }
-
-
 </style>
