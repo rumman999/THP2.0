@@ -29,8 +29,6 @@
   </section>
 </template>
 
-
-
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
@@ -56,19 +54,21 @@ export default {
   methods: {
     async fetchDiscoverItems() {
       try {
-        const response = await fetch("/discover.json"); // Fetch JSON from the public folder
+        const response = await fetch("https://thp.com.bd/wp/wp-json/wp/v2/discover_projects");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const data = await response.json();
 
-        // Resolve image paths dynamically
+        // Map API response to the required structure
         this.discoverItems = data.map((item) => {
-          if (!item.image.startsWith("http")) {
-            item.image = require(`@/assets/${item.image}`);
-          }
-          return item;
+          return {
+            image: item.acf.image || "https://via.placeholder.com/500x600", // Fallback placeholder image
+            subtitle: item.acf.subtitle || "Project",
+            title: item.acf.title,
+            description: item.acf.description || "No description available.",
+          };
         });
       } catch (error) {
         console.error("Failed to fetch discover items:", error);
@@ -77,8 +77,6 @@ export default {
   },
 };
 </script>
-
-
 
 <style scoped>
 /* Section Styling */
@@ -106,8 +104,8 @@ export default {
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease;
-  width: 500px; /* Fixed width */
-  height: 750px; /* Increased card height */
+  width: 500px;
+  height: 750px;
 }
 
 .card:hover {
@@ -116,18 +114,18 @@ export default {
 
 /* Discover Card Dimensions */
 .discover-card {
-  width: 100%; /* Full width within swiper */
-  max-width: 500px; /* Ensure max width consistency */
-  margin: auto; /* Centering */
-  height: 750px; /* Increased card height */
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  height: 750px;
 }
 
 /* Image Adjustments */
 .card-img-top {
   width: 100%;
-  height: 600px; /* Increased height for taller images */
-  object-fit: cover; /* Crop images evenly */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
+  height: 600px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Text Styles */
@@ -141,7 +139,6 @@ export default {
 }
 
 .text-muted {
-  color: #b3b3b3 !important; /* Subtle text for descriptions */
+  color: #b3b3b3 !important;
 }
 </style>
-
