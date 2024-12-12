@@ -6,7 +6,7 @@
         <div class="col-md-6 mb-4 mb-md-0">
           <div class="position-relative text-center">
             <img
-              src="@/assets/com1.webp"
+              src="@/assets/abc.webp"
               alt="Placeholder"
               class="img-fluid rounded hero-image"
             />

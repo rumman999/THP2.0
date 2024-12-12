@@ -45,23 +45,28 @@ export default {
       activeIndex: 0,
     };
   },
-  created() {
-    this.fetchTestimonials();
+  async created() {
+    await this.fetchTestimonials();
   },
   methods: {
     async fetchTestimonials() {
       try {
-        const response = await fetch("/testimonials.json"); // Fetch JSON from the public folder
+        const response = await fetch("https://thp.com.bd/wp/wp-json/wp/v2/testimonials");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const data = await response.json();
 
-        // Resolve image paths dynamically
-        this.testimonials = data.map((testimonial) => {
-          testimonial.image = require(`@/assets/${testimonial.image}`);
-          return testimonial;
+        // Map API response to desired structure
+        this.testimonials = data.map((item) => {
+          return {
+            image: item.acf.image || "https://via.placeholder.com/150", // Fallback image
+            title: item.acf.title || "Untitled",
+            content: item.acf.content || "No content available.",
+            name: item.acf.name || "Anonymous",
+            role: item.acf.role || "Unspecified",
+          };
         });
       } catch (error) {
         console.error("Failed to fetch testimonials:", error);
@@ -76,8 +81,6 @@ export default {
   },
 };
 </script>
-
-
 
 <style scoped>
 /* Container Styling */
@@ -94,7 +97,6 @@ export default {
   gap: 20px;
   justify-content: center;
   align-items: center;
-  ;
 }
 
 .testimonial-image img {
@@ -134,30 +136,6 @@ export default {
 }
 
 /* Controls */
-
-/* Indicators */
-.carousel-indicators {
-  position: absolute;
-  top: 50%;
-  left: 20px; /* Align on the left of the viewport */
-  transform: translateY(-50%);
-  display: flex;
-  gap: 10px;
-}
-
-.indicator {
-  width: 10px;
-  height: 10px;
-  background-color: #ccc;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.indicator.active {
-  background-color: #000;
-}
-
-/* Buttons */
 .carousel-buttons {
   position: absolute;
   top: 50%;
