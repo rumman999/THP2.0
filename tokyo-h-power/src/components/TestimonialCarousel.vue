@@ -86,9 +86,9 @@ export default {
 /* Container Styling */
 .testimonial-carousel {
   height: 80vh;
-  margin: auto;
   text-align: center;
   position: relative;
+  padding: 20px;
 }
 
 /* Carousel Content */
@@ -104,6 +104,7 @@ export default {
   height: 600px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
 }
 
 .testimonial-text {
@@ -139,7 +140,7 @@ export default {
 .carousel-buttons {
   position: absolute;
   top: 50%;
-  right: 20px; /* Align on the right of the viewport */
+  right: 20px;
   transform: translateY(-50%);
   color: black;
   display: flex;
@@ -162,5 +163,14 @@ export default {
 .control-btn:hover {
   background-color: #000;
   color: #fff;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Tablet */
+@media (max-width: 768px) {
+.testimonial-carousel{
+  display: none;
+}
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
-  <footer class=" text-light py-5">
+  <footer class="text-light py-5">
     <div class="container">
       <div class="row">
         <!-- Logo and Newsletter -->
-        <div class="col-md-4 mb-4">
+        <div class="col-md-4 col-12 mb-4">
           <img src="@/assets/logo.webp" alt="Company Logo" class="mb-3" style="max-width: 150px;">
           <p>
             Join our newsletter to stay up to date on features and releases.
@@ -23,21 +23,21 @@
             >
               Subscribe
             </button>
-        </form>
+          </form>
           <small class="d-block mt-2">
             By subscribing you agree to our <a href="#" class="text-decoration-underline">Privacy Policy</a> and provide consent to receive updates from our company.
           </small>
         </div>
 
         <!-- Address -->
-        <div class="col-md-4 mb-4">
+        <div class="col-md-4 col-12 mb-4">
           <h5 class="fw-bold">Address</h5>
           <p class="mb-1">JCX Business Tower, 13th Floor, Block - I, Japan Street, Bashundhara R/A, Dhaka, Bangladesh</p>
           <p class="mb-0">Call: <a href="tel:+8801708422361" class="text-light text-decoration-none">+880 1708-422361</a></p>
         </div>
 
         <!-- Quick Links -->
-        <div class="col-md-2 mb-4">
+        <div class="col-md-2 col-12 mb-4">
           <h5 class="fw-bold">Quick Links</h5>
           <ul class="list-unstyled">
             <li><a href="#" class="text-light text-decoration-none">About Us</a></li>
@@ -47,7 +47,7 @@
         </div>
 
         <!-- Social Links -->
-        <div class="col-md-2">
+        <div class="col-md-2 col-12">
           <h5 class="fw-bold">Follow Us</h5>
           <ul class="list-unstyled d-flex flex-column">
             <li><a href="#" class="text-light text-decoration-none"><i class="fab fa-facebook me-2"></i>Facebook</a></li>
@@ -81,13 +81,27 @@ export default {
 
 <style scoped>
 footer {
-  background-color:  #060709;  
+  background-color: #060709;
 }
+
 footer img {
   max-width: 150px;
 }
 
 footer ul {
   padding-left: 0;
+}
+
+@media (max-width: 768px) {
+  footer .col-md-4, footer .col-md-2 {
+    text-align: center;
+  }
+  .btn {
+    margin: 10px;
+  }
+  footer .d-flex {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>

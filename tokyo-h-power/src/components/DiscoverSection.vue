@@ -42,7 +42,7 @@ export default {
     return {
       discoverItems: [],
       breakpoints: {
-        640: { slidesPerView: 1, spaceBetween: 10 },
+        640: { slidesPerView: 1, spaceBetween: 10 }, // One slide on mobile
         768: { slidesPerView: 2, spaceBetween: 15 },
         1024: { slidesPerView: 3, spaceBetween: 20 },
       },
@@ -82,7 +82,7 @@ export default {
 /* Section Styling */
 .discover-section {
   background-color: #060709;
-  height: 100vh;
+  height: 105vh;
   padding: 50px 15px;
 }
 
@@ -94,7 +94,6 @@ export default {
   padding: 0;
   margin: 0;
   width: auto;
-  margin-left: 0;
 }
 
 /* Bootstrap Card Styling */
@@ -104,26 +103,17 @@ export default {
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease;
-  width: 500px;
-  height: 750px;
+  width: 100%;
 }
 
 .card:hover {
   transform: translateY(-10px);
 }
 
-/* Discover Card Dimensions */
-.discover-card {
-  width: 100%;
-  max-width: 500px;
-  margin: auto;
-  height: 750px;
-}
-
 /* Image Adjustments */
 .card-img-top {
   width: 100%;
-  height: 600px;
+  height: 60%;
   object-fit: cover;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -140,5 +130,43 @@ export default {
 
 .text-muted {
   color: #b3b3b3 !important;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .discover-section{
+    height: 60vh;
+  }
+  .swiper {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card {
+    max-width: 100%;
+    height: 40vh; /* Occupy 90% of the viewport height */
+  }
+
+  .card-img-top {
+    height: 60%; /* Adjust image height */
+  }
+
+  .card-body {
+    padding: 15px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-text {
+    font-size: 0.8rem;
+  }
 }
 </style>

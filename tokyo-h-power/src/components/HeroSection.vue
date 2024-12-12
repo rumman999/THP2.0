@@ -54,7 +54,12 @@ export default {
 .learn-btn{
   background-color: #c6a266;
   color: white;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 25px;
 }
+
+/* Hero Section Styles */
 .hero-section {
   position: relative;
   overflow: hidden;
@@ -62,18 +67,72 @@ export default {
 
 .carousel-caption {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay for readability */
-  color: white;
   text-align: center;
+  color: white;
   padding: 0 15px;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay for readability */
 }
 
 .carousel-inner img {
   height: 100vh;
   object-fit: cover;
+}
+
+/* Responsive Styles */
+
+/* Tablet Landscape (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .carousel-caption h1 {
+    font-size: 2.5rem;
+  }
+
+  .carousel-caption p {
+    font-size: 1.25rem;
+  }
+
+  .learn-btn {
+    font-size: 0.9rem;
+    padding: 8px 18px;
+  }
+}
+
+/* Tablet Portrait and Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .carousel-caption h1 {
+    font-size: 2rem;
+  }
+
+  .carousel-caption p {
+    font-size: 1.1rem;
+  }
+
+  .learn-btn {
+    font-size: 0.85rem;
+    padding: 8px 15px;
+  }
+}
+
+/* Mobile (max-width: 576px) */
+@media (max-width: 576px) {
+  .carousel-caption h1 {
+    font-size: 1.6rem;
+  }
+
+  .carousel-caption p {
+    font-size: 1rem;
+  }
+
+  .learn-btn {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+
+  .carousel-inner img {
+    height: 60vh; /* Adjust image size for mobile */
+  }
 }
 </style>

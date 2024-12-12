@@ -14,25 +14,25 @@
       <!-- Main Content -->
       <div class="row">
         <!-- Highlighted Project -->
-        <div class="col-md-6 mb-4" v-if="highlightedProject">
-          <div class="card h-100">
-            <img
-              :src="highlightedProject.image"
-              class="card-img-top"
-              :alt="highlightedProject.title"
-            />
-            <div class="card-body">
-              <h5 class="card-title fw-bold">{{ highlightedProject.title }}</h5>
-              <p class="text-muted">{{ highlightedProject.details }}</p>
+          <div class="col-lg-6 col-12 mb-4" v-if="highlightedProject" :class="{ 'highlighted-project': true }">
+            <div class="card h-100">
+              <img
+                :src="highlightedProject.image"
+                class="card-img-top"
+                :alt="highlightedProject.title"
+              />
+              <div class="card-body">
+                <h5 class="card-title fw-bold">{{ highlightedProject.title }}</h5>
+                <p class="text-muted">{{ highlightedProject.details }}</p>
+              </div>
             </div>
-          </div>
         </div>
 
         <!-- Grid of Smaller Projects -->
-        <div class="col-md-6">
+        <div class="col-lg-6 col-12">
           <div class="row">
             <div
-              class="col-md-6 mb-4"
+              class="col-md-6 col-12 mb-4"
               v-for="(project, index) in standardProjects"
               :key="index"
             >
@@ -111,6 +111,7 @@ export default {
   justify-content: center; /* Center horizontally */
   background-color: #c6a266; /* Optional: light background */
   color: white;
+  padding: 20px; /* Padding to ensure content doesn't touch the edges */
 }
 
 .card {
@@ -118,7 +119,31 @@ export default {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
+
 .card:hover {
   transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+  .creations-section {
+    padding: 10px; /* Less padding on smaller screens */
+  }
+
+  .card-img-top {
+    height: auto; /* Make images responsive */
+  }
+
+  .row {
+    display: block; /* Display as block on smaller screens */
+  }
+
+  .col-lg-6 {
+    display: none; /* Hide the second column (grid of smaller projects) */
+  }
+
+  /* Show only the highlighted project */
+  .highlighted-project {
+    display: block;
+  }
 }
 </style>
