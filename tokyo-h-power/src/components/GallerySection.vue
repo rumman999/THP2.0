@@ -31,7 +31,7 @@
         <img
           src="@/assets/g3.webp"
           alt="Building 3"
-          class="img-fluid rounded gallery-image"
+          class="img-fluid rounded mt-4 gallery-image"
         />
       </div>
     </div>
