@@ -98,7 +98,7 @@ export default {
   async created() {
     try {
       const response = await fetch(
-        `https://thp.com.bd/wp/wp-json/wp/v2/projects/${this.id}`
+        `https://thp.com.bd/api/wp-json/wp/v2/projects/${this.id}`
       );
       const data = await response.json();
       this.project = {

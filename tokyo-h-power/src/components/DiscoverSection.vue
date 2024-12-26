@@ -54,7 +54,7 @@ export default {
   methods: {
     async fetchDiscoverItems() {
       try {
-        const response = await fetch("https://thp.com.bd/wp/wp-json/wp/v2/discover_projects");
+        const response = await fetch("https://thp.com.bd/api/wp-json/wp/v2/discover_projects");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

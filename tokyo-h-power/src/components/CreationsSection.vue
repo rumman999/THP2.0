@@ -1,9 +1,8 @@
 <template>
-  <section class="creations-section d-flex align-items-center justify-content-center">
-    <!-- Content Wrapper -->
-    <div class="container text-center">
+  <section class="creations-section">
+    <div class="container">
       <!-- Title Section -->
-      <div class="mb-4">
+      <div class="text-center mb-4">
         <h2 class="fw-bold">Our Creations</h2>
         <p>
           Our creations are a testament to our commitment to excellence, innovation, and sustainability.
@@ -13,14 +12,13 @@
 
       <!-- Main Content -->
       <div class="row">
-        <!-- Highlighted Project -->
-        <div
-          class="col-lg-6 col-12 mb-4"
-          v-if="highlightedProject"
-          :class="{ 'highlighted-project': true }"
-          @click="goToProject(highlightedProject.id)"
-        >
-          <div class="card h-100">
+        <!-- Left Column: Highlighted Project -->
+        <div class="col-lg-6 col-12 mb-4">
+          <div
+            class="card highlighted-project h-100"
+            v-if="highlightedProject"
+            @click="goToProject(highlightedProject.id)"
+          >
             <img
               :src="highlightedProject.image"
               class="card-img-top"
@@ -33,12 +31,12 @@
           </div>
         </div>
 
-        <!-- Grid of Smaller Projects -->
+        <!-- Right Column: 2x2 Grid of Remaining Projects -->
         <div class="col-lg-6 col-12">
           <div class="row">
             <div
-              class="col-md-6 col-12 mb-4"
-              v-for="(project, index) in standardProjects"
+              class="col-6 mb-4"
+              v-for="(project, index) in gridProjects"
               :key="index"
               @click="goToProject(project.id)"
             >
@@ -68,7 +66,7 @@ export default {
     return {
       projects: [],
       highlightedProject: null,
-      standardProjects: [],
+      gridProjects: [],
     };
   },
   async created() {
@@ -77,7 +75,7 @@ export default {
   methods: {
     async fetchProjects() {
       try {
-        const response = await fetch("https://thp.com.bd/wp/wp-json/wp/v2/projects");
+        const response = await fetch("https://thp.com.bd/api/wp-json/wp/v2/projects");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -86,26 +84,23 @@ export default {
 
         // Format projects from API response
         this.projects = data.map((project) => ({
-          id: project.id, // Include the ID for routing
+          id: project.id,
           title: project.acf.title || "Untitled",
           details: project.acf.description || "No description available.",
-          image: project.acf.project_image || "https://via.placeholder.com/150", // Fallback for missing image
+          image: project.acf.project_image || "https://via.placeholder.com/150",
           category: project.acf.category || "Uncategorized",
         }));
 
-        // Categorize projects
-        this.highlightedProject = this.projects.find(
-          (project) => project.category === "Highlighted"
-        );
-        this.standardProjects = this.projects.filter(
-          (project) => project.category === "Standard"
-        );
+        // Separate projects into highlighted and grid
+        if (this.projects.length > 0) {
+          this.highlightedProject = this.projects[0]; // Take the first project as the highlighted one
+          this.gridProjects = this.projects.slice(1); // The remaining projects for the grid
+        }
       } catch (error) {
         console.error("Error fetching or processing projects:", error);
       }
     },
     goToProject(projectId) {
-      // Navigate to the project page
       this.$router.push({ name: "ProjectPage", params: { id: projectId } });
     },
   },
@@ -114,46 +109,52 @@ export default {
 
 <style scoped>
 .creations-section {
-  height: 100vh; /* Full viewport height */
-  display: flex; /* Flexbox for centering */
-  align-items: center; /* Center vertically */
-  justify-content: center; /* Center horizontally */
-  background-color: #c6a266; /* Optional: light background */
+  padding: 40px 0;
+  background-color: #c6a266;
   color: white;
-  padding: 20px; /* Padding to ensure content doesn't touch the edges */
 }
 
 .card {
   border: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-  cursor: pointer; /* Add pointer cursor on hover */
+  cursor: pointer;
 }
 
 .card:hover {
   transform: scale(1.03);
 }
 
+/* Highlighted Project Specific Styles */
+.highlighted-project img {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Adjust the right column grid */
+.row > .col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .creations-section {
-    padding: 10px; /* Less padding on smaller screens */
+  .highlighted-project img {
+    height: auto;
   }
 
-  .card-img-top {
-    height: auto; /* Make images responsive */
-  }
-
+  /* Stack items in one column for smaller screens */
   .row {
-    display: block; /* Display as block on smaller screens */
+    flex-direction: column;
   }
 
   .col-lg-6 {
-    display: none; /* Hide the second column (grid of smaller projects) */
+    width: 100%;
   }
 
-  /* Show only the highlighted project */
-  .highlighted-project {
-    display: block;
+  .col-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 }
 </style>

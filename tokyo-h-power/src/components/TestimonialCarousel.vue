@@ -51,7 +51,7 @@ export default {
   methods: {
     async fetchTestimonials() {
       try {
-        const response = await fetch("https://thp.com.bd/wp/wp-json/wp/v2/testimonials");
+        const response = await fetch("https://thp.com.bd/api/wp-json/wp/v2/testimonials");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
